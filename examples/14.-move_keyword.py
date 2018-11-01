@@ -2,16 +2,16 @@ import pygame
 import sys
 import os
 
-WIDTH = 288
+WIDTH = 400
 HEIGHT = 512
 WHITE = (255, 255, 255)
 
 pygame.init()
 
 display = pygame.display.set_mode( (WIDTH, HEIGHT) )
-pygame.display.set_caption('Cargar imagenes!')
+pygame.display.set_caption('Movimiento por teclado')
 
-image_png = pygame.image.load('resources/sprites/redbird-upflap.png')
+image_png = pygame.image.load('resources/sprites/small_circle.png')
 image_rect = image_png.get_rect()
 image_rect.center = (WIDTH / 2, HEIGHT / 2)
 
@@ -33,6 +33,7 @@ while True:
     if pressed[pygame.K_s]:
         image_rect.y += 5
 
+    #Validaciones
     if image_rect.left < 0:
         image_rect.left = 0
 

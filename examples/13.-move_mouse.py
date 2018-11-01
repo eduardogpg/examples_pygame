@@ -7,26 +7,24 @@ HEIGHT = 512
 
 #RGB
 WHITE = (255, 255, 255)
+RED = (134,45,83)
 
 DIR = os.path.dirname(os.path.abspath(__file__))
 
 pygame.init()
 
-#RGB
-WHITE = (255, 255, 255)
-
 display = pygame.display.set_mode( (WIDTH, HEIGHT) )
 pygame.display.set_caption('Cargar imagenes!')
 
-image_png = pygame.image.load('resources/sprites/redbird-upflap.png')
-#image_posx = 100
-#image_posy = 100
+def create_text(text=''):
+    font = pygame.font.Font('freesansbold.ttf', 32)
 
-image_rect = image_png.get_rect()
-image_rect.center = (WIDTH / 2, HEIGHT / 2)
+    text = font.render(text, True, RED)
+    text_rect = text.get_rect()
+    text_rect.center = (WIDTH / 2, HEIGHT / 2)
 
-print(image_rect.x)
-print(image_rect.y)
+    return text, text_rect
+
 
 while True:
     for event in pygame.event.get():
@@ -36,6 +34,10 @@ while True:
 
     display.fill(WHITE)
 
-    #Qué se pintará, Donde se pintara
-    display.blit(image_png, image_rect)
+    posx, posy = pygame.mouse.get_pos()
+    message = 'x : ' + str(posx) + ' / y :' + str(posy)
+
+    text, text_rect = create_text(message)
+    display.blit(text, text_rect)
+
     pygame.display.update()

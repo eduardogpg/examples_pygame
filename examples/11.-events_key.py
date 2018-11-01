@@ -22,7 +22,7 @@ def create_text(text=''):
 
     return text, text_rect
 
-message = 'Eventos del teclado'
+message = 'Presione un tecla'
 
 while True:
     for event in pygame.event.get():
@@ -30,32 +30,28 @@ while True:
             pygame.quit()
             sys.exit()
 
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            print(event) #pos and button
+        if event.type == pygame.KEYDOWN:
+            print(event) #unicode, key
 
-            print(event.pos)
+            if event.key == pygame.K_LEFT or event.key == pygame.K_a:
+                message = "Izquierda"
 
-            if event.button == 1:
-                posx, posy = pygame.mouse.get_pos()
+            if event.key == pygame.K_RIGHT or event.key == pygame.K_d:
+                message = "Derecha"
 
-                message = 'Izquierda'
+            if event.key == pygame.K_DOWN or event.key == pygame.K_s:
+                message = "Abajo"
 
-            if event.button == 2:
-                message = 'Centro'
+            if event.key == pygame.K_UP or event.key == pygame.K_w:
+                message = "Arriba"
 
-            if event.button == 3:
-                message = 'Derecha'
+            print(message)
 
-            if event.button == 4:
-                message = 'Arriba'
-
-            if event.button == 5:
-                message = 'Abajo'
-
-        if event.type == pygame.MOUSEBUTTONUP:
+        if event.type == pygame.KEYUP:
             pass
 
     display.fill(WHITE)
+
 
     text, text_rect = create_text(message)
     display.blit(text, text_rect)

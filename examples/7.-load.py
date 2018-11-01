@@ -12,14 +12,21 @@ DIR = os.path.dirname(os.path.abspath(__file__))
 
 pygame.init()
 
+#RGB
+WHITE = (255, 255, 255)
+
 display = pygame.display.set_mode( (WIDTH, HEIGHT) )
 pygame.display.set_caption('Cargar imagenes!')
 
-clock = pygame.time.Clock()
+image_png = pygame.image.load('resources/sprites/small_rectangle.png')
+#image_posx = 100
+#image_posy = 100
 
-image_png = pygame.image.load('resources/sprites/redbird-upflap.png')
 image_rect = image_png.get_rect()
 image_rect.center = (WIDTH / 2, HEIGHT / 2)
+
+print(image_rect.x)
+print(image_rect.y)
 
 while True:
     for event in pygame.event.get():
@@ -27,11 +34,8 @@ while True:
             pygame.quit()
             sys.exit()
 
-    posx, posy = pygame.mouse.get_pos()
-    image_rect.center = (posx, posy)
-
     display.fill(WHITE)
-    display.blit(image_png, image_rect)
 
-    clock.tick(60)
+    #Qué se pintará, Donde se pintara
+    display.blit(image_png, image_rect)
     pygame.display.update()
